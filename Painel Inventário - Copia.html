@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternar Páginas</title>
+    <style>
+        /* Remove todas as margens e preenchimentos do body */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Faz o iframe ocupar toda a tela */
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        // Lista das URLs que serão alternadas
+        const urls = [
+            "https://slateblue-oryx-747384.hostingersite.com/projeto-londrina-2/",
+            "https://slateblue-oryx-747384.hostingersite.com/projeto-maceio-2/",
+            "file:///C:/Users/admin/Documents/Painel%20Invent%C3%A1rio.html",
+            "file:///C:/Users/admin/Documents/Painel%20GLPI.html",
+            "file:///C:/Users/admin/Documents/Painel%20Principais%20Ofensores.html"
+        ];
+
+        // Intervalo de tempo (em milissegundos) para alternar entre as páginas (10000 = 10 segundos)
+        const intervalo = 10000;
+        let currentIndex = 0;
+
+        // Função para alterar a URL dentro do iframe
+        function alternarPaginas() {
+            document.getElementById('webFrame').src = urls[currentIndex];
+            currentIndex = (currentIndex + 1) % urls.length;
+        }
+
+        // Iniciar a alternância de páginas quando a página carregar
+        window.onload = function() {
+            alternarPaginas(); // Carrega a primeira página
+            setInterval(alternarPaginas, intervalo); // Altera a cada 10 segundos
+        };
+    </script>
+</head>
+<body>
+    <!-- Iframe para carregar as páginas -->
+    <iframe id="webFrame" src=""></iframe>
+</body>
+</html>
